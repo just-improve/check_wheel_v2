@@ -19,3 +19,6 @@ class Model:
 
         self.real_roullete_value_my_wheels = None
         self.list_real_roullete_value_randoms = None
+
+        self.my_wheels_best_n_numbers = None
+        self.list_df_best_n_numbers_for_random_wheels = []

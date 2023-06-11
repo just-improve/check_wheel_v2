@@ -3,7 +3,6 @@ import pandas as pd
 def get_df_sektor_stats(df):
     list_of_dict_sektors_ratio = []
     list_of_dict_of_indexes_sektors = []
-
     list_of_dict_len_win_numb_in_sekt = []   #trzeba pomyśleć jak to zwrócić czy jako list of dict czy jako dataframe chyba jako dataframe ponieważ później będzie możńa komparatorem porównać
     list_of_dict_avg_score_win_numbrs_in_sekt = []
     list_of_dict_sum_score_win_numbrs_in_sekt = []
@@ -38,7 +37,7 @@ def get_df_sektor_stats(df):
             len_win_numbers_in_sektor = calculate_len_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
             avg_score_win_numbers_in_sektor_in_sektor = calculate_avg_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
             sum_score_win_numbers_in_sektor_in_sektor = calculate_sum_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
-
+            print('')
             dict_of_len_win_numbers_in_sektor[sektor+1] = len_win_numbers_in_sektor
             dict_of_avg_score_win_numbers_in_sektor[sektor+1] = avg_score_win_numbers_in_sektor_in_sektor
             dict_of_sum_score_win_numbers_in_sektor[sektor+1] = sum_score_win_numbers_in_sektor_in_sektor
@@ -120,13 +119,10 @@ def get_list_sektors_stats_for_random_wheels(my_wheels_df_sektors, list_of_rando
     return list_of_df_sektor_stats_random_df_wheels, indexes_sektors_for_random_wheels, \
            list_len_win_nums_in_random_sektor, list_avg_score_wins_num_in_ranodm_sektor,list_sum_score_wins_num_in_ranodm_sektor, list_of_double_roullete_value
 
-
-
-
 def calculate_len_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value):
     sum_roullte = sum(double_real_roullete_value[0:37])
     sektor = sektor+1
-    count_over_1_36 = sum_roullte/41
+    count_over_1_36 = sum_roullte/36
     badany_sektor = double_real_roullete_value[index1_max_sum_sektor:index2_max_sum_sektor]
     count = len([num for num in badany_sektor if num > count_over_1_36])
     list_of_winning_numbers = [num for num in badany_sektor if num > count_over_1_36]
@@ -136,7 +132,7 @@ def calculate_len_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_ma
 def calculate_avg_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value):
     sum_roullte = sum(double_real_roullete_value[0:37])
     sektor = sektor + 1
-    count_over_1_36 = sum_roullte / 37
+    count_over_1_36 = sum_roullte / 36
     badany_sektor = double_real_roullete_value[index1_max_sum_sektor:index2_max_sum_sektor]
     count = len([num for num in badany_sektor if num > count_over_1_36])
     list_of_winning_numbers = [num for num in badany_sektor if num > count_over_1_36]
@@ -147,18 +143,19 @@ def calculate_avg_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, ind
     # print('')
     return ev
 
+# wiaderny
 def calculate_sum_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value):
     sum_roullte = sum(double_real_roullete_value[0:37])
     sektor = sektor + 1
-    count_over_1_36 = sum_roullte / 41
+    count_over_1_36 = sum_roullte / 36
     badany_sektor = double_real_roullete_value[index1_max_sum_sektor:index2_max_sum_sektor]
     count = len([num for num in badany_sektor if num > count_over_1_36])
     list_of_winning_numbers = [num for num in badany_sektor if num > count_over_1_36]
     sum_winning_numbers = sum(list_of_winning_numbers)
 
     count_for_ev = count-1
-    ev = calculate_ev_for_sum_win_numb_in_sektr(sektor,sum_winning_numbers,sum_roullte)   #dajemy tu sektor ponieważ chcemy mieć porównany sum wygranych do sektora a nie tylko do liczby wygranych
-    # print('')
+    ev = calculate_ev_for_sum_win_numb_in_sektr(sektor, sum_winning_numbers, sum_roullte)   #dajemy tu sektor ponieważ chcemy mieć porównany sum wygranych do sektora a nie tylko do liczby wygranych
+    print('')
     return ev
 
 def change_single_dict_for_df(avg_score_win_nums_in_sektor_my_wheels, my_wheels_df):
