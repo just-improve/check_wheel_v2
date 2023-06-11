@@ -28,7 +28,7 @@ class HomeController:
     def create_random_wheels(self):
         # amount_of_random_wheels = 100
         entry_amount_of_random_wheels = int(self.frame.entry_amount_random_wheels.get())
-        print('')
+        # print('')
         self.model.my_wheels_as_df = creator_random_wheels.get_my_wheels_from_files_as_df()
         self.model.list_of_random_df_wheels = creator_random_wheels.get_list_of_random_df_wheels(self.model.my_wheels_as_df, entry_amount_of_random_wheels)
 
@@ -38,27 +38,24 @@ class HomeController:
         df_to_html(my_df_stats, 'Tests for my wheels')
 
     def display_score_stats_my_wheels(self):
-        self.model.my_wheels_as_df = creator_random_wheels.get_my_wheels_from_files_as_df()
-        df_score = score_stats.get_df_score_for_df_wheels(self.model.my_wheels_as_df)
-        df_to_html(df_score, 'Score winning numbers for my wheels')
+        self.model.my_df_score = score_stats.get_df_score_for_df_wheels(self.model.my_wheels_as_df)
+        df_to_html(self.model.my_df_score, 'Score winning numbers for my wheels')
 
     def display_score_among_wheels(self):
-        self.model.my_wheels_as_df = creator_random_wheels.get_my_wheels_from_files_as_df()
-        df_score_my_wheels = score_stats.get_df_score_for_df_wheels(self.model.my_wheels_as_df)
         df_score_among_random_wheels = score_stats.get_df_list_score_for_list_df_random_wheels(self.model.list_of_random_df_wheels)
-        list_my_score_wheel_with_randoms = comparator.get_list_of_connected_my_wheel_with_randoms_wheel_dfs(df_score_my_wheels, df_score_among_random_wheels)
-        df_score_stats_among_randoms = comparator.get_dict_of_sektors_position_among_randoms_wheels(list_my_score_wheel_with_randoms, df_score_my_wheels)
+        list_my_score_wheel_with_randoms = comparator.get_list_of_connected_my_wheel_with_randoms_wheel_dfs(self.model.my_df_score, df_score_among_random_wheels)
+        df_score_stats_among_randoms = comparator.get_dict_of_sektors_position_among_randoms_wheels(list_my_score_wheel_with_randoms, self.model.my_df_score)
         df_to_html(df_score_stats_among_randoms, f'Score winning numbers among random {len(self.model.list_of_random_df_wheels[0])} wheels ')
 
     def make_sektors_stats_my_wheels(self):
         self.model.my_wheels_as_df = creator_random_wheels.get_my_wheels_from_files_as_df()
         # score_setter = int(self.frame.entry_score_setter.get())
-        print('')
+        # print('')
         self.model.my_wheels_sektor_stats, self.model.my_wheels_sektor_indexes, self.model.len_win_nums_in_sektor, \
         self.model.avg_score_wins_num_in_sektor, self.model.sum_score_wins_num_in_sektor, self.model.real_roullete_value_my_wheels = \
             sektors_stats.get_df_sektor_stats(self.model.my_wheels_as_df)
 
-        print('')
+        # print('')
         self.model.random_wheels_sektor_stats, self.model.random_wheels_sektor_indexes, \
         self.model.len_win_nums_in_randoms_sektor, self.model.avg_score_wins_num_in_randoms_sektor, self.model.sum_score_wins_num_in_randoms_sektor, self.model.list_real_roullete_value_randoms \
             = sektors_stats.get_list_sektors_stats_for_random_wheels(self.model.my_wheels_sektor_stats, self.model.list_of_random_df_wheels)
@@ -78,7 +75,7 @@ class HomeController:
         df_best_n_numbers_among_randoms_sektors = comparator.get_dict_of_sektors_position_among_randoms_wheels(
             list_best_n_numbers_my_wheels_with_randoms,  self.model.my_wheels_best_n_numbers)
 
-        df_to_html(self.model.my_wheels_best_n_numbers, f'my_wheels_best_n_numbers ')
+        df_to_html(self.model.my_wheels_best_n_numbers, f'my_wheels_best_n_numbers avg_score')
         df_to_html(df_best_n_numbers_among_randoms_sektors, f'df_best_n_numbers_among_randoms_{len(self.model.list_of_random_df_wheels[0])} wheels ')
         # df_to_html(list_df_best_n_numbers_for_random_wheels, f' list_df_best_n_numbers_for_random_wheels ')
 

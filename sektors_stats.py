@@ -37,7 +37,7 @@ def get_df_sektor_stats(df):
             len_win_numbers_in_sektor = calculate_len_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
             avg_score_win_numbers_in_sektor_in_sektor = calculate_avg_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
             sum_score_win_numbers_in_sektor_in_sektor = calculate_sum_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, index2_max_sum_sektor, double_real_roullete_value)
-            print('')
+            # print('')
             dict_of_len_win_numbers_in_sektor[sektor+1] = len_win_numbers_in_sektor
             dict_of_avg_score_win_numbers_in_sektor[sektor+1] = avg_score_win_numbers_in_sektor_in_sektor
             dict_of_sum_score_win_numbers_in_sektor[sektor+1] = sum_score_win_numbers_in_sektor_in_sektor
@@ -62,7 +62,7 @@ def get_df_sektor_stats(df):
     df_avg_score_numb_in_sekt = change_single_dict_for_df(list_of_dict_avg_score_win_numbrs_in_sekt, df)
     df_sum_score_numb_in_sekt = change_single_dict_for_df(list_of_dict_sum_score_win_numbrs_in_sekt, df)
 
-    print('')
+    # print('')
 
     return final_df_of_sektors_ratio, list_of_dict_of_indexes_sektors, df_len_win_numb_in_sekt, \
            df_avg_score_numb_in_sekt, df_sum_score_numb_in_sekt, list_of_double_real_roullete_value
@@ -155,7 +155,7 @@ def calculate_sum_score_win_numbers_in_sektor(sektor, index1_max_sum_sektor, ind
 
     count_for_ev = count-1
     ev = calculate_ev_for_sum_win_numb_in_sektr(sektor, sum_winning_numbers, sum_roullte)   #dajemy tu sektor ponieważ chcemy mieć porównany sum wygranych do sektora a nie tylko do liczby wygranych
-    print('')
+    # print('')
     return ev
 
 def change_single_dict_for_df(avg_score_win_nums_in_sektor_my_wheels, my_wheels_df):

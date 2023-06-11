@@ -7,6 +7,7 @@ class Model:
         self.my_wheels_sektor_stats = None
         self.my_wheels_sektor_indexes = None
         self.random_wheels_sektor_indexes = None
+        self.my_df_score = None
 
         self.len_win_nums_in_sektor = None
         self.avg_score_wins_num_in_sektor = None

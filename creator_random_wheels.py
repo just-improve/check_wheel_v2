@@ -21,7 +21,7 @@ def get_my_wheels_from_files_as_df():
         moje_kolo = moje_kolo.iloc[:, -1:].join(moje_kolo.iloc[:, :-1])
         moje_kolo = moje_kolo.rename(index={'count': wheel_name})
         df = pd.concat([df, moje_kolo])
-        print('')
+        # print('')
 
     return df
 
@@ -30,7 +30,7 @@ def get_list_of_random_df_wheels(my_df_wheels, amount_wheels_to_generate):
     list_of_random_df_wheels = []
     for num in iterations:
         wheel_spin_sum = my_df_wheels.iloc[num].sum()
-        print('')
+        # print('')
         random_wheels_for_single_wheel = get_random_df_wheels(amount_wheels_to_generate, wheel_spin_sum)
         list_of_random_df_wheels.append(random_wheels_for_single_wheel)
     return list_of_random_df_wheels
